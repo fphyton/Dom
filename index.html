@@ -1,52 +1,144 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convertisseur de devises</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Convertisseur EUR / USD / DZD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .converter {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            flex: 1;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button.reset {
+            background-color: #f44336;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
 </head>
-
 <body>
-
-    <div class="container">
-        <div class="header">
-            <h1>Currency converter</h1>
+    <h1>Convertisseur EUR / USD / DZD</h1>
+    
+    <div class="converter">
+        <div class="form-group">
+            <label for="amount">Montant à convertir :</label>
+            <input type="number" id="amount" placeholder="Entrez le montant">
         </div>
-
-        <div class="card">
-            <label for="amount">Amount to convert :</label>
-            <input type="number" id="amount" placeholder="">
-
-            <div class="currency-container">
-                <div>
-                    <label for="from">From</label>
-                    <select id="from">
-                        <option value="DZD">DZD</option>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="to">To</label>
-                    <select id="to">
-                        <option value="DZD">DZD</option>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <button class="convert" onclick="convert()">Convert</button>
-                <button class="reset" onclick="reset()">Reset</button>
-            </div>
+        
+        <div class="form-group">
+            <label for="from">De :</label>
+            <select id="from">
+                <option value="EUR">EUR - Euro</option>
+                <option value="USD">USD - Dollar US</option>
+                <option value="DZD">DZD - Dinar Algérien</option>
+            </select>
         </div>
+        
+        <div class="form-group">
+            <label for="to">À :</label>
+            <select id="to">
+                <option value="USD">USD - Dollar US</option>
+                <option value="EUR">EUR - Euro</option>
+                <option value="DZD">DZD - Dinar Algérien</option>
+            </select>
+        </div>
+        
+        <div class="buttons">
+            <button type="button" id="convert">Convertir</button>
+            <button type="button" id="reset" class="reset">Réinitialiser</button>
+        </div>
+        
+        <div id="result"></div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <script>
+        // Taux de change (approximatifs)
+        const exchangeRates = {
+            "EUR": { "USD": 1.08, "DZD": 145 },
+            "USD": { "EUR": 0.93, "DZD": 134 },
+            "DZD": { "EUR": 0.0069, "USD": 0.0075 }
+        };
 
+        document.getElementById("convert").addEventListener("click", function() {
+            const amount = parseFloat(document.getElementById("amount").value);
+            const fromCurrency = document.getElementById("from").value;
+            const toCurrency = document.getElementById("to").value;
+            
+            if (isNaN(amount)) {
+                alert("Veuillez entrer un montant valide !");
+                return;
+            }
+            
+            if (fromCurrency === toCurrency) {
+                document.getElementById("result").textContent = 
+                    `Le montant reste le même : ${amount.toFixed(2)} ${toCurrency}`;
+                return;
+            }
+            
+            const rate = exchangeRates[fromCurrency][toCurrency];
+            const convertedAmount = amount * rate;
+            
+            document.getElementById("result").textContent = 
+                `${amount.toFixed(2)} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+        });
+        
+        document.getElementById("reset").addEventListener("click", function() {
+            document.getElementById("amount").value = "";
+            document.getElementById("from").value = "EUR";
+            document.getElementById("to").value = "USD";
+            document.getElementById("result").textContent = "";
+        });
+    </script>
+</body>
 </html>
