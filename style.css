@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #5A52DF;
+}
+
+.container {
+    text-align: center;
+}
+
+.header {
+    background: #C2C2A3;
+    padding: 15px;
+    border-radius: 5px;
+    width: 280px;
+    margin: auto;
+}
+
+.header h1 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 280px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: -5px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-size: 14px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.currency-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.currency-container div {
+    width: 48%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 8px;
+    width: 45%;
+    font-size: 14px;
+}
+
+.convert {
+    background: #7D77E3;
+    color: white;
+}
+
+.convert:hover {
+    background: #5A52DF;
+}
+
+.reset {
+    background: #D8D8D8;
+    color: black;
+}
+
+.reset:hover {
+    background: #B8B8B8;
+}

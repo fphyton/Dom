@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de devises</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Currency converter</h1>
+        </div>
+
+        <div class="card">
+            <label for="amount">Amount to convert :</label>
+            <input type="number" id="amount" placeholder="">
+
+            <div class="currency-container">
+                <div>
+                    <label for="from">From</label>
+                    <select id="from">
+                        <option value="DZD">DZD</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="to">To</label>
+                    <select id="to">
+                        <option value="DZD">DZD</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="convert" onclick="convert()">Convert</button>
+                <button class="reset" onclick="reset()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
